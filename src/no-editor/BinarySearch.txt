@@ -1,0 +1,65 @@
+-- Search target element
+public int search(int[] nums, int target) {
+  int low = 0;
+  int high = nums.length -1;
+  return recursiveBinarySearch(nums, low, high, target);
+}
+
+int recursiveBinarySearch(int[] nums, int low, int high, int target){
+    if(low > high)
+      return -1;
+    int mid = low + (high-low)/2;
+    if(nums[mid] == target)
+      return mid;
+    if(target > nums[mid])
+      return recursiveBinarySearch(nums, mid+1, high, target);
+    else
+      return recursiveBinarySearch(nums, mid, mid-1, target);
+}
+
+--- Search target element in rotated Array
+public int search(int[] nums, int target) {
+  int low = 0;
+  int high = nums.length -1;
+  return recursiveBinarySearch(nums, low, high, target);
+}
+
+int recursiveBinarySearch(int[] nums, int low, int high, int target){
+  if(low > high)
+    return -1;
+  int mid = low + (high-low)/2;
+  if(nums[mid] == target)
+    return mid;
+  if(nums[mid] > nums[high]){
+    if(target < nums[mid]){
+      return recursiveBinarySearch(nums, mid + 1, high, target);
+    } else{
+      return recursiveBinarySearch(nums, low, mid -1, target);
+    }
+  } else{
+    if(target > nums[low] && target < nums[high])
+      return recursiveBinarySearch(nums, low, mid-1, target);
+    else
+      return recursiveBinarySearch(nums, mid+1, high, target);
+  }
+}
+
+--- Find number of rotations
+int findRotationsCount(int[] nums){
+  int low = 0;
+  int high = nums.length -1;
+  if(nums[low] <= nums[high]){
+    return 0;
+  }
+  while(low <= high){
+    int mid = low + (high-low)/2;
+    if(nums[mid] < nums[mid - 1] && nums[mid] > nums[mid + 1]){
+      return mid;
+    }
+    if(nums[mid] > nums[high]){
+      low = mid +1;
+    } else{
+      high = mid -1;
+    }
+  }
+}

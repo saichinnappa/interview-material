@@ -1,0 +1,72 @@
+--- Remove duplicates from unsorted Linked Lists
+class Node{
+  int data;
+  Node next;
+  Node(int value){
+    this.data = value;
+    this.next = null;
+    this.tail = null;
+  }
+}
+
+class LinkedLists{
+  Node head;
+  Node tail;
+  int length =0;
+
+  void insertAtTail(int data){
+    Node newNode = Node(data);
+    if(head== null){
+      head = newNode;
+      tail = newNode;
+    }
+    tail.next = newNode;
+    tail = newNode;
+    this.length++;
+  }
+
+  void removeDuplicates(){
+    if(head == null){
+      return;
+    }
+    Node currentNode = head;
+    Node prevNode = head;
+    Set<Integer> valueSet = new HashSet<>();
+    while(currentNode != null){
+    if(!valueSet.contains(currentNode.data)){
+        valueSet.add(currentNode.data);
+    } else{
+      prevNode.next = currentNode.next;
+    }
+    prevNode = currentNode;
+    currentNode = currentNode.next;
+    }
+  }
+
+  void print(){
+    Node currentNode = head;
+    while(currentNode != null){
+      System.out.print(currentNode.data+" -> ");
+      currentNode = currentNode.next;
+    }
+    System.out.print("null");
+  }
+
+;
+}
+
+public class Solution{
+  public static void main(String[] args) {
+    LinkedLists linkedList = new LinkedLists();
+    linkedList.insertAtTail(3);
+    linkedList.insertAtTail(5);
+    linkedList.insertAtTail(2);
+    linkedList.insertAtTail(1);
+    linkedList.insertAtTail(6);
+    linkedList.insertAtTail(1);
+    linkedList.insertAtTail(5);
+    linkedList.print();
+    linkedList.removeDuplicates();
+    linkedList.print();
+  }
+}

@@ -1,0 +1,123 @@
+//String with Unique characters
+public boolean isUnique(String s) {
+    char[] charArray = s.toCharArray();
+    for (int i = 0; i < charArray.length; i++) {
+        for (int j = 0; j < charArray.length; j++) {
+            if (i != j && charArray[i] == charArray[j])
+                return false;
+        }
+    }
+    return true;
+}
+
+//Reverse a String
+
+string reverse(String s){
+  StringBuilder StringBuilder = new StringBuilder();
+  for(int i=s.length()-1; i>-1 ;i--){
+    stringBuilder.append(s.charAt(i));
+  }
+  return stringBuilder.toString();
+}
+
+-- In place string reverse
+String inplaceReverse(String s){
+  int mid = s.length()/2;
+  int startIdx = 0;
+  for(int i=s.length()-1; i>=mid; i--){
+    char temp = s.charAt(i);
+    s = s.replace(s.charAt(i), s.charAt(startIdx));
+    s = s.replace(s.charAt(startIdx), temp);
+    startIdx++;
+  }
+}
+
+-- In place string replace
+String replaceSpaces(String s, int length){
+  char[] charArray = s.toCharArray();
+  for(int i=0; i<length; i++){
+    if(charArray[i] == ' '){
+        charArray[i] = '%20';
+    }
+  }
+  return (String)charArray;
+}
+
+-- check if a string is permutation of another
+Method A: Sort and compare strings
+
+boolean isCombinationUsingSort(String a, String b){
+    char[] aArray = a.toCharArray();
+    char[] bArray = b.toCharArray();
+    Arrays.sort(aArray);
+    Arrays.sort(bArray);
+    return String.valueOf(aArray).equals(String.valueOf(bArray));
+}
+
+Method B: Check character count
+
+boolean isCombinationUsingCharacterCount(String a, String b){
+    char[] aArray = a.toCharArray();
+    char[] characterCountTracker = new char[128];
+    for(char c : aArray){
+        characterCountTracker[(int)(c-97)]++;
+    }
+    char[] bArray = b.toCharArray();
+    for(char c : bArray){
+        if(--characterCountTracker[(int)(c-97)] < 0){
+            return false;
+        }
+    }
+    return true;
+}
+
+-- String compression
+
+String compress(String word){
+    StringBuilder string = new StringBuilder();
+    char[] charArray = word.toCharArray();
+    int count =1;
+    for(int i=0;i<charArray.length-1;i++){
+        if(charArray[i] == charArray[i+1]){
+            count++;
+        } else{
+            string.append(charArray[i]);
+            string.append(count);
+            count =0;
+        }
+     }
+     if(charArray[charArray.length-1] != charArray[charArray.length-2]){
+        string.append(charArray[charArray.length-1]);
+        string.append(1);
+     }
+     return string.toString().length() > word.length() ? word : string.string();
+}
+
+-- isSubstring: After Rotation, if the string is a valid rotation of original string
+boolean isSubstring(String s1, String s2){
+  char firstChar = s1.charAt(0);
+  StringBuilder result = new StringBuilder();
+  int firstCharIndexRotatedString = -1;
+  for(int i=0; i< s2.charArray().length; i++){
+    if(charArray[i] == firstChar){
+      firstCharIndexRotatedString = i;
+    }
+  }
+  if(firstCharIndexRotatedString == -1){
+    return false;
+  } else{
+    result.append(s2.subString(s2.charAt(firstCharIndexRotatedString), s2.length));
+    result.append(s2.subString(0, s2.charAt(firstCharIndexRotatedString)));
+  }
+  return result.toString() == s1;
+}
+
+-- print string in reverse order using recursion
+class reverseString(){
+  public static void main(String[] args){
+
+  }
+  private String reverseString(String input){
+
+  }
+}

@@ -1,0 +1,51 @@
+--Find zero in a M*N matrtix, and set entire row and column to zero
+void findAndSetZero(int[][] matrix){
+  for(int i=0;i<matrix.length;i++){ //get all rows in matrix
+    for(int j=0;j<matrix[i].length;j++){ //get all columns w.r.t the row
+      if(matrix[i][j] == 0){
+        int rowIndex = 0;
+        int colIndex = 0;
+        while(!colIndex > matrix[i].length){ //iterate complete until colIndex reaches the length of the row
+          matrix[i][colIndex] = 0;
+          colIndex++;
+        }
+        while(!rowIndex > matrix.length){ //iterate all rows until rowIndex reaches matrix length
+          matrix[rowIndex][j] = 0;
+          rowIndex++;
+        }
+      }
+    }
+  }
+}
+
+--Reverse an array
+void reverseArray(int[] nums){
+    int start = 0;
+    int length = nums.length() -1;
+    int end = nums.length -1;
+    int mid = nums.length/2;
+    while(start != mid){
+        int temp = nums[length - start];
+        nums[length - start] = nums[start];
+        nums[start] = temp;
+        start++;
+    }
+}
+
+--Best time to buy and sell stocks
+public int maxProfit(int[] prices) {
+    Map<Integer, Integer> stockPrices = new HashMap();
+    for(int i=0; i<prices.length;i++){
+        stockPrices.put(prices[i], i);
+    }
+    Arrays.sort(prices);
+    int lowestPrice = prices[0];
+    int lowestPriceDay = stockPrices.get(prices[0]);
+    int heighestPrice = -1;
+    for(int i=prices.length -1 ;i>0;i--){
+        if(lowestPriceDay < stockPrices.get(prices[i])){
+            heighestPrice = prices[i];
+        }
+    }
+    return heighestPrice - lowestPrice;
+}

@@ -1,0 +1,6 @@
+#string:
+1. sorting
+2. substring
+3. character count
+4. boolean array
+5. int array to map characters

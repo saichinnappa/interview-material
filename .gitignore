@@ -1,0 +1,12 @@
+.idea/
+.gradle/
+gradle/
+gradlew
+gradlew.bat
+out/
+
+.tmp
+.idea
+*.iml
+
+.DS_Store
