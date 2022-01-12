@@ -13,7 +13,7 @@ package com.interview.amazon.oa;
 
 public class CustomerRatings {
     public static void main(String[] args) {
-        int[] ratings = {3, 2, 1};
+        int[] ratings = {4, 3, 5, 4, 3};
         int ans = bruteForce(ratings);
         int ans1 = optimized(ratings);
         System.out.println(ans + " " + ans1);
@@ -23,44 +23,30 @@ public class CustomerRatings {
         if (ratings.length == 0)
             return 0;
 
-        int j = 0;
-        int result = 0;
-        int prev = 0;
-
+        int j = 0, result = 0;
         for (int i = 0; i < ratings.length; i++) {
-
-            result++; //increment result, to consider group of 1
-            prev = ratings[i]; //compare remaining elements with the prev element;
-            j = i + 1; // update j, to compare the prev value;
-
-            while (j < ratings.length && prev > ratings[j]) { // while j is within the array limits and also value of j is greater than prev, keep going.
+            result++;
+            j = i + 1;
+            while (j < ratings.length && ratings[i] > ratings[j]) {
                 result++;
-//                prev = ratings[j];
                 j++;
             }
-
         }
         return result;
     }
 
     private static int optimized(int[] ratings) {
+        if (ratings.length == 0) return 0;
 
-        if (ratings.length == 0)
-            return 0;
-
-        int j = 0;
-        int result = ratings.length;
+        int result = ratings.length, j = 0;
 
         for (int i = 1; i < ratings.length; i++) {
-            if (ratings[j] - ratings[i] >= 1) { //compare with previous element, and add the difference in indexes to result (which covers multiple groups)
+            if (ratings[j] - ratings[i] >= 1) {
                 result += (i - j);
             } else {
-                j = i; //at any point, if the difference between current and previous element is negative, move the i -> j
+                j = i;
             }
         }
-
         return result;
     }
-
-
 }
