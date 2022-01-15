@@ -13,7 +13,7 @@ import java.util.Arrays;
  */
 public class QuickSort {
     public static void main(String[] args) {
-        int[] unsortedArray = {2, 0, 2, 1, 1, 0};
+        int[] unsortedArray = {5, 2, 1, 6, 7};
         quickSort(unsortedArray, 0, unsortedArray.length - 1);
         System.out.println(Arrays.toString(unsortedArray));
     }
@@ -22,7 +22,7 @@ public class QuickSort {
 
         if (start < end) {
             int pivotIndex = partitionArray(unsortedArray, start, end);
-            System.out.println(pivotIndex);
+            System.out.println("PI -> " + pivotIndex);
             quickSort(unsortedArray, 0, pivotIndex - 1);
             quickSort(unsortedArray, pivotIndex + 1, end);
         }
@@ -32,6 +32,7 @@ public class QuickSort {
         int pivotElement = unsortedArray[end];
         int i = start - 1;
         for (int j = start; j <= end; j++) {
+            System.out.println(Arrays.toString(unsortedArray));
             if (unsortedArray[j] <= pivotElement) {
                 ++i;
                 int temp = unsortedArray[i];
