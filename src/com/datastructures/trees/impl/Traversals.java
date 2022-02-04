@@ -1,74 +1,34 @@
 package com.datastructures.trees.impl;
 
-import java.util.ArrayDeque;
-import java.util.Queue;
-import java.util.Stack;
+import java.util.*;
 
 public class Traversals {
+    static List<Integer> result = new ArrayList<>();
 
     public static void main(String[] args) {
         BinarySearchTree binarySearchTree = new BinarySearchTree();
         Node root = binarySearchTree.buildTree();
-        dfs(root);
+        dfsIterative(root);
+        dfsRecursive(root);
+        System.out.println("DFS RECURSIVE: " + result);
         bfs(root);
-        System.out.print("PRE ORDER -> ");
+        System.out.print("PREORDER -> ");
         preOrder(root);
-        System.out.print("\nIN ORDER -> ");
+        System.out.print("\nINORDER -> ");
         inOrder(root);
-        System.out.print("\nPOST ORDER -> ");
+        System.out.print("\nPOSTORDER -> ");
         postOrder(root);
     }
 
-    private static void dfs(Node node) {
-        StringBuilder stringBuilder = new StringBuilder();
-        Stack<Node> stack = new Stack<>();
-        stack.push(node);
-        while (!stack.isEmpty()) {
-            Node top = stack.pop();
-            stringBuilder.append(top.val + " ");
-            if (top.right != null)
-                stack.push(top.right);
-            if (top.left != null)
-                stack.push(top.left);
-        }
-        System.out.println("\nDFS -> " + stringBuilder.toString());
-    }
-
-    private static void bfs(Node root) {
-        Queue<Node> queue = new ArrayDeque<>();
-        queue.add(root);
-        StringBuilder stringBuilder = new StringBuilder();
-        long count = 0;
-        while (!queue.isEmpty()) {
-            Node first = queue.poll();
-            stringBuilder.append(first.val + " ");
-            if (first.left != null)
-                queue.add(first.left);
-            if (first.right != null)
-                queue.add(first.right);
-        }
-        System.out.println("BFS -> " + stringBuilder.toString());
-    }
-
-    /**
-     * PRE ORDER: ROOT -> LEFT -> RIGHT
-     *
-     * @param root
-     */
-    static void preOrder(Node root) {
+    private static void postOrder(Node root) {
         if (root == null)
             return;
+        postOrder(root.left);
+        postOrder(root.right);
         System.out.print(root.val + " ");
-        preOrder(root.left);
-        preOrder(root.right);
     }
 
-    /**
-     * IN ORDER: LEFT -> ROOT -> RIGHT
-     *
-     * @param root
-     */
-    static void inOrder(Node root) {
+    private static void inOrder(Node root) {
         if (root == null)
             return;
         inOrder(root.left);
@@ -76,16 +36,63 @@ public class Traversals {
         inOrder(root.right);
     }
 
-    /**
-     * POST ORDER: LEFT -> RIGHT -> ROOT
-     *
-     * @param root
-     */
-    static void postOrder(Node root) {
+    private static void preOrder(Node root) {
         if (root == null)
             return;
-        postOrder(root.left);
-        postOrder(root.right);
         System.out.print(root.val + " ");
+        preOrder(root.left);
+        preOrder(root.right);
     }
+
+
+    private static void bfs(Node root) {
+        Queue<Node> queue = new ArrayDeque<>();
+        if (root == null)
+            return;
+        else
+            queue.offer(root);
+        List<Integer> result = new ArrayList<>();
+        while (!queue.isEmpty()) {
+            Node first = queue.poll();
+            result.add(first.val);
+            if (first.left != null)
+                queue.offer(first.left);
+            if (first.right != null)
+                queue.offer(first.right);
+        }
+        System.out.println("BFS ITERATIVE: " + result);
+    }
+
+    private static void dfsRecursive(Node root) {
+        if (root == null)
+            return;
+        result.add(root.val);
+        dfsRecursive(root.left);
+        dfsRecursive(root.right);
+
+    }
+
+    // 50 30 10 5 40 70 60 80 85
+    //[50, 30, 10, 5, 40, 70, 60, 80, 85]
+    private static void dfsIterative(Node root) {
+        Stack<Node> stack = new Stack<>();
+        if (root == null) {
+            System.out.println("Tree is empty!");
+            return;
+        } else {
+            stack.push(root);
+        }
+        List<Integer> result = new ArrayList<>();
+        while (!stack.isEmpty()) {
+            Node top = stack.pop();
+            result.add(top.val);
+            if (top.right != null)
+                stack.push(top.right);
+            if (top.left != null)
+                stack.push(top.left);
+        }
+        System.out.println("DFS ITERATIVE: " + result);
+    }
+
+
 }

@@ -61,7 +61,7 @@ class BinarySearchTree {
         binarySearchTree.insertRecursive(root, node6);
         binarySearchTree.insertRecursive(root, node7);
         binarySearchTree.insertRecursive(root, node8);
-        binarySearchTree.print(root);
+//        binarySearchTree.print(root);
         return root;
     }
 
