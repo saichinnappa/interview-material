@@ -8,7 +8,7 @@ public class EqualsVsHashCode {
     public static void main(String[] args) {
         Money m1 = new Money(55, "USD");
         System.out.println(m1.hashCode());
-        Money m2 = new Money(551, "USD");
+        Money m2 = new Money(55, "USD");
         System.out.println(m2.hashCode());
         System.out.println(m1.equals(m2));
 
@@ -36,7 +36,7 @@ class Money {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Money money = (Money) o;
-        return amount == money.amount && Objects.equals(currencyCode, money.currencyCode);
+        return amount == money.amount && currencyCode.equals(money.currencyCode);
     }
 
     @Override

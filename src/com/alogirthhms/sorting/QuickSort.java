@@ -13,7 +13,7 @@ import java.util.Arrays;
  */
 public class QuickSort {
     public static void main(String[] args) {
-        int[] unsortedArray = {5, 2, 1, 6, 7};
+        int[] unsortedArray = {5, 4, 3, 2, 1};
         quickSort(unsortedArray, 0, unsortedArray.length - 1);
         System.out.println(Arrays.toString(unsortedArray));
     }

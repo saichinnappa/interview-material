@@ -1,7 +1,6 @@
 package com.practice.leetcode.recursion.backtracking;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class Combinations {
@@ -13,7 +12,7 @@ public class Combinations {
 
         checker = new boolean[3];
         search(3, "");
-        System.out.println(Collections.singletonList(result));
+        System.out.println(result);
     }
 
     static List<Integer> getCandidate() {

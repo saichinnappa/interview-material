@@ -7,16 +7,18 @@ public class MinValueInRotatedSubArray {
         System.out.println("Min Element: " + input[rIdx]);
     }
 
-    private static int findRotatedIndex(int[] input, int start, int end) {
-        if (input[start] < input[end])
+    private static int findRotatedIndex(int[] nums, int start, int end) {
+        if (nums[start] < nums[end])
             return 0;
         while (start <= end) {
-            int mid = (start + end) / 2;
-            if (input[mid] > input[mid + 1])
-                return mid + 1;
-            else if (input[mid] < input[start])
+            int mid = start + (end - start) / 2;
+            if (nums[mid] > nums[mid + 1])
+                return nums[mid + 1];
+            if (nums[mid - 1] > nums[mid]) {
+                return nums[mid];
+            } else if (nums[mid] < nums[start])
                 end = mid - 1;
-            else if (input[mid] >= input[start])
+            else if (nums[mid] >= nums[start])
                 start = mid + 1;
         }
         return -1;
