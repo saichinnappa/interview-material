@@ -24,23 +24,24 @@ package com.practice.designgurus.arrays.slidingwindow;
  */
 public class SmallestSumSubarray {
     public static void main(String[] args) {
-        int ans = helper(3, new int[]{3, 1, 1, 2});
+        int ans = helper(8, new int[]{3, 4, 1, 1, 6});
         System.out.println(ans);
     }
 
     private static int helper(int s, int[] ints) {
+        int start = 0;
         int result = Integer.MAX_VALUE;
-        int startWindow = 0;
-        int runningSum = 0;
-
-        for (int i = startWindow; i < ints.length; i++) {
-            runningSum += ints[i];
-            while (runningSum >= s) {
-                result = Math.min(result, i - startWindow + 1);
-                runningSum -= ints[startWindow];
-                startWindow++;
+        int currentSum = 0;
+        for (int i = 0; i < ints.length; i++) {
+            currentSum += ints[i];
+            while (currentSum >= s) {
+                result = Math.min(result, i - start + 1);
+                currentSum -= ints[start];
+                start++;
             }
         }
         return result;
     }
+
+
 }

@@ -30,21 +30,23 @@ public class LongestSubStringWithKDistinctChars {
         System.out.println(ans);
     }
 
-    private static int helper(String input, int k) {
+    private static int helper(String input, int s) {
         Set<Character> set = new HashSet<>();
-        char[] arr = input.toCharArray();
-        int result = Integer.MIN_VALUE;
-        int startWindow = 0;
-        for (int i = 0; i < arr.length; i++) {
-            set.add(arr[i]);
-            if (set.size() == k) {
-                result = Math.max(result, i - startWindow + 1);
-            } else if (set.size() > k) {
-                set.remove(arr[startWindow]);
-                startWindow = i;
+        StringBuilder sb = new StringBuilder();
+        int maxLength = Integer.MIN_VALUE;
+        int start = 0;
+        for (int i = 0; i < input.length(); i++) {
+            if (!set.contains(input.charAt(i))) {
+                set.add(input.charAt(i));
             }
-
+            if (set.size() > s) {
+                maxLength = Math.max(maxLength, i - start);
+                set.remove(input.charAt(start));
+                start++;
+            }
         }
-        return result;
+        return maxLength;
     }
+
+
 }
