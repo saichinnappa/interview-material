@@ -33,25 +33,25 @@ class DomNode {
 
 public class PopUp {
     public static void main(String[] args) {
-        DomNode N = new DomNode("N", false, new ArrayList());
-        DomNode O = new DomNode("O", false, new ArrayList());
-        DomNode P = new DomNode("P", true, new ArrayList());
+        DomNode N = new DomNode("N", false, new ArrayList<>());
+        DomNode O = new DomNode("O", false, new ArrayList<>());
+        DomNode P = new DomNode("P", true, new ArrayList<>());
 
-        DomNode C = new DomNode("C", false, new ArrayList());
+        DomNode C = new DomNode("C", false, new ArrayList<>());
 
-        DomNode Z = new DomNode("Z", false, new ArrayList());
-        DomNode Y = new DomNode("Y", false, new ArrayList());
+        DomNode Z = new DomNode("Z", false, new ArrayList<>());
+        DomNode Y = new DomNode("Y", false, new ArrayList<>());
 
 
         DomNode POPUP = new DomNode("POPUP", true, Arrays.asList(N, O, P));
-        DomNode I = new DomNode("I", false, new ArrayList());
+        DomNode I = new DomNode("I", false, new ArrayList<>());
         DomNode J = new DomNode("J", false, Arrays.asList(Z, Y));
-        DomNode K = new DomNode("K", true, new ArrayList());
+        DomNode K = new DomNode("K", true, new ArrayList<>());
 
         DomNode D = new DomNode("D", false, Arrays.asList(POPUP, I, J, K));
 
-        DomNode F = new DomNode("F", false, new ArrayList());
-        DomNode G = new DomNode("G", false, new ArrayList());
+        DomNode F = new DomNode("F", false, new ArrayList<>());
+        DomNode G = new DomNode("G", false, new ArrayList<>());
 
         DomNode B = new DomNode("B", false, Arrays.asList(F, G));
 
@@ -69,36 +69,37 @@ public class PopUp {
 
     private static boolean findMainPopUp(DomNode root) {
         for (DomNode node : root.children) {
+            System.out.println("Processing Node: " + node.id);
             if (findPopUp(node, root))
                 return true;
         }
         return false;
     }
 
-    private static boolean findPopUp(DomNode node, DomNode root) {
-        System.out.println("Processing: " + node.id);
-        for (DomNode x : node.children) {
-            if (x.id.equals("POPUP")) {
-//                x.hidden = false;
-                for (DomNode sibling : root.children) {
-//                    System.out.println("Hiding: " + sibling.id);
-                    if (!sibling.id.equals(node.id))
+    private static boolean findPopUp(DomNode node, DomNode parent) {
+        for (DomNode current : node.children) {
+            if (current.id.equals("POPUP")) {
+                for (DomNode sibling : node.children) {
+                    if (!sibling.id.equals("POPUP"))
                         sibling.hidden = true;
-                }
-                for (DomNode child : node.children) {
-                    System.out.println("Hiding: " + child.id);
-                    if (!child.id.equals(x.id))
-                        child.hidden = true;
                     else
-                        child.hidden = false;
+                        sibling.hidden = false;
+                }
+                for (DomNode parentSiblings : parent.children) {
+                    if (!parentSiblings.id.equals(node.id)) {
+                        parentSiblings.hidden = true;
+                    }
                 }
                 return true;
             }
         }
+
         for (DomNode child : node.children) {
+            System.out.println("Processing Node>> " + child.id);
             if (findPopUp(child, node))
                 return true;
         }
+
         return false;
     }
 
