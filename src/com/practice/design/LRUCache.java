@@ -18,51 +18,52 @@ public class LRUCache {
 
     LinkedList<DLL> cache = new LinkedList<>();
     Map<Integer, DLL> map = new HashMap<>();
-    int size = 0;
+    int size;
+    DLL head;
+    DLL tail;
 
     LRUCache(int size) {
         this.size = size;
     }
 
     public static void main(String[] args) {
-        LRUCache cache = new LRUCache(3);
-        cache.put(1, 1);
-        cache.put(2, 2);
-        cache.put(3, 3);
-        cache.put(1, 4);
-        System.out.println(cache.get(1));
-    }
-
-    //If cache is full, evict LRU and add the new pair
-    //It cache is empty or not full, add end of the list;
-    void put(int key, int val) {
-
-        if (cache.size() == size) {
-            int leastNodeKey = cache.getFirst().key;
-            cache.removeFirst();
-            map.remove(leastNodeKey);
-        }
-        if (cache.size() < size) {
-
-            if (map.containsKey(key)) {
-
-            }
-
-
-            DLL prevNode = null;
-            if (cache.size() > 0) {
-                prevNode = cache.peekLast();
-            }
-            DLL newNode = new DLL(key, val, prevNode, null);
-            cache.addLast(newNode);
-            map.put(key, newNode);
-        }
 
     }
 
     int get(int key) {
-        return map.containsKey(key) ? map.get(key).val : -1;
+        if (map.containsKey(key)) {
+            DLL node = map.get(key);
+            DLL prev = node.prev;
+            DLL next = node.next;
+            prev.next = next;
+            next.prev = prev;
+            cache.addFirst(node);
+            this.head = node;
+            return key;
+        }
+        return -1;
     }
+
+    void put(int key, int val) {
+        if (map.containsKey(key)) {
+            DLL existingNode = map.get(key);
+            existingNode.val = val;
+            map.put(key, existingNode);
+            DLL prev = existingNode.prev;
+            DLL next = existingNode.next;
+            prev.next = next;
+            next.prev = prev;
+            cache.addFirst(existingNode);
+            this.head = existingNode;
+        } else if (cache.size() < size) {
+            DLL newNode = new DLL(key, val, null, null);
+            cache.addFirst(newNode);
+            this.head = newNode;
+            map.put(key, newNode);
+        }
+    }
+
+
 }
 
 class DLL {

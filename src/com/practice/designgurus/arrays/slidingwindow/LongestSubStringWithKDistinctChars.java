@@ -1,6 +1,7 @@
 package com.practice.designgurus.arrays.slidingwindow;
 
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.Set;
 
 /**
@@ -25,6 +26,8 @@ import java.util.Set;
  * Explanation: The longest substrings with no more than '3' distinct characters are "cbbeb" & "bbebi".
  */
 public class LongestSubStringWithKDistinctChars {
+    LinkedList list = new LinkedList<Integer>();
+
     public static void main(String[] args) {
         int ans = helper("cbbebi", 3);
         System.out.println(ans);
