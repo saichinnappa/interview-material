@@ -10,31 +10,32 @@ public class MostFrequentLetters {
 
     public static void getMaxNeighbor(String[] strs) {
         Map<Character, Map<Character, Integer>> map = new HashMap<>();
-
-        for (String str : strs) {
-            for (int i = 0; i < str.length(); i++) {
-                map.putIfAbsent(str.charAt(i), new HashMap<>());
-                Map<Character, Integer> neighbors = map.get(str.charAt(i));
-                for (int j = 0; j < str.length(); j++) {
-                    if (i == j)
-                        continue;
-                    neighbors.put(str.charAt(j), neighbors.getOrDefault(str.charAt(j), 0) + 1);
+        for (String s : strs) {
+            for (int i = 0; i < s.length(); i++) {
+                map.putIfAbsent(s.charAt(i), new HashMap<>());
+                Map<Character, Integer> countMap = map.get(s.charAt(i));
+                for (int j = 0; j < s.length(); j++) {
+                    if (i == j) continue;
+                    countMap.put(s.charAt(j), countMap.getOrDefault(s.charAt(j), 0) + 1);
                 }
             }
         }
 
         Map<Character, Set<Character>> result = new HashMap<>();
-        for (Character c : map.keySet()) {
-            List<Map.Entry<Character, Integer>> entries = new ArrayList<>(map.get(c).entrySet());
-            Collections.sort(entries, (a, b) -> b.getValue() - a.getValue());
-
-            result.putIfAbsent(c, new HashSet<>());
-            int occ = entries.get(0).getValue();
-            for (Map.Entry<Character, Integer> entry : entries) {
-                if (entry.getValue() == occ)
-                    result.get(c).add(entry.getKey());
+        for (Map.Entry<Character, Map<Character, Integer>> entry : map.entrySet()) {
+            List<Map.Entry<Character, Integer>> x = new ArrayList<>(entry.getValue().entrySet());
+            Collections.sort(x, (a, b) -> b.getValue() - a.getValue());
+            result.put(entry.getKey(), new HashSet<>());
+            int most = x.get(0).getValue();
+            for (Map.Entry<Character, Integer> y : x) {
+                if (y.getValue() == most) {
+                    result.get(entry.getKey()).add(y.getKey());
+                }
             }
         }
+
         System.out.println(result);
+
+
     }
 }
