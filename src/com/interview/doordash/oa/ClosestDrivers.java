@@ -1,4 +1,4 @@
-package com.interview.doordash;
+package com.interview.doordash.oa;
 
 import java.util.*;
 
@@ -58,14 +58,20 @@ public class ClosestDrivers {
     private static List<Integer> getDashers(List<Dasher> dashers, Location location, int maxSize) {
         PriorityQueue<Dasher> queue = new PriorityQueue<>(new ResultComparator());
         for(Dasher d : dashers){
-            double dist = Math.sqrt(Math.pow(location.latitude - d.lastKnownLocation.latitude, 2) + Math.pow(location.longitude - d.lastKnownLocation.longitude, 2));
-            d.distFromRestaurant = dist;
+            d.distFromRestaurant = Math.sqrt(Math.pow(location.latitude - d.lastKnownLocation.latitude, 2) + Math.pow(location.longitude - d.lastKnownLocation.longitude, 2));
             queue.offer(d);
         }
         List<Integer> result = new ArrayList<>();
-        for(int i = 0; i < 3; i++){
+
+        int i = 0;
+        while(queue.size() >= maxSize && i != maxSize){
             result.add(queue.poll().id);
+            i++;
         }
+
+//        for(int i = 0; i < 3; i++){
+//            result.add(queue.poll().id);
+//        }
         return result;
     }
 }
