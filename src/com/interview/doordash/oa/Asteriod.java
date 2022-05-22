@@ -1,9 +1,8 @@
 package com.interview.doordash.oa;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
-public class PickupNDelivery {
+public class Asteriod {
     public static void main(String[] args) {
 
         int[] asteroids = {10,2,-5, -7};
@@ -23,7 +22,7 @@ public class PickupNDelivery {
             }
         }
         int[] answer = new int[stack.size()];
-        for(int i=answer.length-1;i>=0;i--) {
+        for(int i=answer.length-1; i>=0; i--) {
             answer[i] = stack.pop();
         }
         System.out.println(Arrays.toString(answer));

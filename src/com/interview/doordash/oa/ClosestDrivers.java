@@ -9,8 +9,8 @@ public class ClosestDrivers {
         int id;
         Location lastKnownLocation;
         int rating;
-
         double distFromRestaurant;
+
         public Dasher(int id, Location lastKnownLocation, int rating, double distFromRestaurant) {
             this.id = id;
             this.lastKnownLocation = lastKnownLocation;

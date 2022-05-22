@@ -122,7 +122,7 @@ public class FiveMinIntervals {
         }
 
         private void add(int mins) {
-            hour += (mins + min) / 60; // every hour has 60 minutes so do by 1
+            hour += (mins + min) / 60; // every hour has 60 minutes so do by 60
             min = (mins + min) % 60; // max minutes in an hour is 60 % 60, to reset counter back.
             if (hour == 12) { // if hour is 12, need to check if its am or pm and change day accordingly
                 dayTime = !dayTime; //check if morning or evening

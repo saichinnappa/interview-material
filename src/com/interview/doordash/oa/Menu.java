@@ -1,9 +1,6 @@
 package com.interview.doordash.oa;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Menu {
     public static class Node {
@@ -24,7 +21,7 @@ public class Menu {
                 return false;
             }
 
-            return this.key == node.key
+            return Objects.equals(this.key, node.key)
                     && this.value == node.value
                     && this.isActive == node.isActive;
         }

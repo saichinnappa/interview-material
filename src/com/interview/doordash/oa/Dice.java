@@ -7,7 +7,6 @@ import java.util.List;
 // https://leetcode.com/discuss/interview-question/1515046/DoorDash-Data-Eng-Tech-phone-screen
 public class Dice {
 
-    static boolean[] checker = new boolean[7];
     static List<List<Integer>> result = new ArrayList<>();
 
     public static void main(String[] args) {

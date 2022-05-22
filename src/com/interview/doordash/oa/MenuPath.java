@@ -1,7 +1,6 @@
 package com.interview.doordash.oa;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 /**
  * API spec:

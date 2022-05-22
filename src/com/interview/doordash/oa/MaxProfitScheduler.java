@@ -80,12 +80,12 @@ public class MaxProfitScheduler {
     }
 }
 
-class Profit{
-    int value;
-    List<int[]> jobs;
-
-    Profit(int value, List<int[]> jobs){
-        this.value = value;
-        this.jobs = jobs;
-    }
-}
+//class Profit{
+//    int value;
+//    List<int[]> jobs;
+//
+//    Profit(int value, List<int[]> jobs){
+//        this.value = value;
+//        this.jobs = jobs;
+//    }
+//}
