@@ -10,7 +10,7 @@ public class MaxProfitScheduler {
         int[] startTime = {1,2,3,3};
         int[] endTime =   {3,4,5,6};
         int[] profit =     {50,10,40,70};
-        int sTime = 3;
+        int sTime = 0;
         int eTime = 7;
 
         System.out.println(findMaxProfit(startTime, endTime, profit, sTime, eTime));
@@ -19,37 +19,34 @@ public class MaxProfitScheduler {
 
     private static int findMaxProfit(int[] startTime, int[] endTime, int[] profit, int sTime, int eTime) {
         Arrays.fill(memo, - 1);
-        List<List<Integer>> jobs = new ArrayList<>();
+        List<Job> jobs = new ArrayList<>();
         for(int i = 0; i < startTime.length; i++){
             if(startTime[i] >= sTime && endTime[i] <= eTime){
-                List<Integer> job = new ArrayList<>();
-                job.add(startTime[i]);
-                job.add(endTime[i]);
-                job.add(profit[i]);
+                Job job = new Job(startTime[i], endTime[i], profit[i]);
                 jobs.add(job);
             }
 
         }
 
-        jobs.sort((j1, j2) -> j1.get(0) - j2.get(0));
+        jobs.sort((j1, j2) -> j1.startTime - j2.startTime);
 
         int[] newStartTime = new int[jobs.size()];
         for(int i = 0; i < newStartTime.length; i++){
-            newStartTime[i] = jobs.get(i).get(0);
+            newStartTime[i] = jobs.get(i).startTime;
         }
 
         return maxProfit(newStartTime, jobs, 0, newStartTime.length);
     }
 
-    private static int maxProfit(int[] startTime, List<List<Integer>> jobs, int position, int length) {
+    private static int maxProfit(int[] startTime, List<Job> jobs, int position, int length) {
         if(position == length)
             return 0;
 
         if(memo[position] != -1)
             return memo[position];
 
-        int nextIndex = findNextIndex(startTime, jobs.get(position).get(1));
-        int profit = Math.max(maxProfit(startTime, jobs, position + 1, length) , jobs.get(position).get(2) + maxProfit(startTime, jobs, nextIndex, length));
+        int nextIndex = findNextIndex(startTime, jobs.get(position).endTime);
+        int profit = Math.max(maxProfit(startTime, jobs, position + 1, length) , jobs.get(position).profit + maxProfit(startTime, jobs, nextIndex, length));
 //        int profit = 0;
 //        Profit p = new Profit(0, new ArrayList<>());
 //        if(maxProfit(startTime, jobs, position + 1, length) > jobs.get(position).get(2) + maxProfit(startTime, jobs, nextIndex, length)){
@@ -89,3 +86,15 @@ public class MaxProfitScheduler {
 //        this.jobs = jobs;
 //    }
 //}
+
+class Job{
+    int startTime;
+    int endTime;
+    int profit;
+
+    Job(int startTime, int endTime, int profit){
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.profit = profit;
+    }
+}

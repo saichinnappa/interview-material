@@ -13,7 +13,7 @@ public class ValidParentheses {
     public static void main(String[] args) {
 //        open = 3;
 //        close = 3;
-        solve(3);
+        solve(2);
         System.out.println(result);
     }
 

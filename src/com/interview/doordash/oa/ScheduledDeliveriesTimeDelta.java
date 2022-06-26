@@ -1,6 +1,6 @@
 package com.interview.doordash.oa;
 
-// https://leetcode.com/company/doordash/discuss/1920251/Doordash-or-Phone-or-Claim-Scheduled-Deliveries
+// https://leetcode.com/company/doordash/discuss/1920251/Doordash-or-Phone-or-Claim-Scheduled-Deliveries <<< Using TIMESTAMPS
 // https://leetcode.com/discuss/interview-question/1544410/Doordash-TPS-Senior-Software-Engineer
 
 //import java.time.LocalDateTime;
@@ -155,7 +155,7 @@ class Time{
     }
 }
 
-public class ScheduledDeliveries {
+public class ScheduledDeliveriesTimeDelta {
 
     /*
      high tier dashers can see all of next day deliveries if the current time is 18:00 or later

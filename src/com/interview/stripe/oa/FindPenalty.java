@@ -39,39 +39,38 @@ public class FindPenalty {
     @Test
     public void findPenaltyTest() {
         System.out.println("-- Running find penalty testcases --");
-        FindPenalty fP1 = new FindPenalty();
-        assertEquals(fP1.findPenaltyForShop("Y Y Y N", 3), 0);
-        assertEquals(fP1.findPenaltyForShop("Y Y Y N", 2), 1);
-        assertEquals(fP1.findPenaltyForShop("Y Y Y N", 1), 2);
-        assertEquals(fP1.findPenaltyForShop("Y Y Y N", 0), 3);
-        assertEquals(fP1.findPenaltyForShop("Y Y Y N", 5), 2);
+        assertEquals(findPenaltyForShop("Y Y Y N", 3), 0);
+        assertEquals(findPenaltyForShop("Y Y Y N", 2), 1);
+        assertEquals(findPenaltyForShop("Y Y Y N", 1), 2);
+        assertEquals(findPenaltyForShop("Y Y Y N", 0), 3);
+        assertEquals(findPenaltyForShop("Y Y Y N", 5), 2);
     }
 
     @Test
     public void bestTimeTest(){
         System.out.println("-- Running best time to close shop testcases --");
         FindPenalty findPenalty = new FindPenalty();
-        assertEquals(findPenalty.bestTimeToClose("Y Y Y N"), 3);
-        assertEquals(findPenalty.bestTimeToClose("Y Y N Y"), 2);
-        assertEquals(findPenalty.bestTimeToClose("Y N N Y"), 1);
-        assertEquals(findPenalty.bestTimeToClose("Y N N N"), 1);
-        assertEquals(findPenalty.bestTimeToClose("N N N N"), 0);
-        assertEquals(findPenalty.bestTimeToClose("Y Y Y Y"), 3);
+        assertEquals(bestTimeToClose("Y Y Y N"), 3);
+        assertEquals(bestTimeToClose("Y Y N Y"), 2);
+        assertEquals(bestTimeToClose("Y N N Y"), 1);
+        assertEquals(bestTimeToClose("Y N N N"), 1);
+        assertEquals(bestTimeToClose("N N N N"), 0);
+        assertEquals(bestTimeToClose("Y Y Y Y"), 3);
     }
 
     @Test
     public void validLogEntries(){
         System.out.println("-- Running valid log entries testcases --");
         FindPenalty findPenalty = new FindPenalty();
-        assertEquals(findPenalty.findValidLogEntries("BEGIN Y N Y N END"), 1);
-        assertEquals(findPenalty.findValidLogEntries("BEGIN Y N Y N"), 0);
-        assertEquals(findPenalty.findValidLogEntries("BEGIN Y N Y N END BEGIN Y N Y N END BEGIN"), 2);
-        assertEquals(findPenalty.findValidLogEntries("BEGIN Y N Y N END BEGIN Y N Y N END END"), 2);
-        assertEquals(findPenalty.findValidLogEntries("BEGIN Y N Y N END END Y N Y N END END"), 1);
-        assertEquals(findPenalty.findValidLogEntries("BEGIN Y N Y N BEGIN"), 0);
-        assertEquals(findPenalty.findValidLogEntries("BEGIN \n Y N\n Y N END \nBEGIN Y\n\n N N END"), 2);
-        assertEquals(findPenalty.findValidLogEntries("BEGIN \n Y N\n"), 0);
-        assertEquals(findPenalty.findValidLogEntries(""), 0);
+        assertEquals(findValidLogEntries("BEGIN Y N Y N END"), 1);
+        assertEquals(findValidLogEntries("BEGIN Y N Y N"), 0);
+        assertEquals(findValidLogEntries("BEGIN Y N Y N END BEGIN Y N Y N END BEGIN"), 2);
+        assertEquals(findValidLogEntries("BEGIN Y N Y N END BEGIN Y N Y N END END"), 2);
+        assertEquals(findValidLogEntries("BEGIN Y N Y N END END Y N Y N END END"), 1);
+        assertEquals(findValidLogEntries("BEGIN Y N Y N BEGIN"), 0);
+        assertEquals(findValidLogEntries("BEGIN \n Y N\n Y N END \nBEGIN Y\n\n N N END"), 2);
+        assertEquals(findValidLogEntries("BEGIN \n Y N\n"), 0);
+        assertEquals(findValidLogEntries(""), 0);
     }
 
     @Test
@@ -79,21 +78,21 @@ public class FindPenalty {
         System.out.println("-- Running nested status testcases --");
         FindPenalty findPenalty = new FindPenalty();
         Map<String, Integer> map = Map.of("Y Y N", 2);
-        Map<String, Integer> result = findPenalty.nestedStatus("BEGIN BEGIN Y Y N END BEGIN Y N END");
+        Map<String, Integer> result = nestedStatus("BEGIN BEGIN Y Y N END BEGIN Y N END");
         assertEquals(map, result);
 
         Map<String, Integer> map1 = Map.of("Y Y N", 2, "Y N", 1);
-        Map<String, Integer> result1 = findPenalty.nestedStatus("BEGIN BEGIN Y Y N END BEGIN Y N END END");
+        Map<String, Integer> result1 = nestedStatus("BEGIN BEGIN Y Y N END BEGIN Y N END END");
         assertEquals(map1, result1);
 
 
         Map<String, Integer> map2 = Map.of();
-        Map<String, Integer> result2 = findPenalty.nestedStatus("BEGIN Y Y N END BEGIN Y N END");
+        Map<String, Integer> result2 = nestedStatus("BEGIN Y Y N END BEGIN Y N END");
         assertEquals(map2, result2);
 
 
         Map<String, Integer> map3 = Map.of("Y Y N", 2, "N Y N", 2);
-        Map<String, Integer> result3 = findPenalty.nestedStatus("BEGIN BEGIN Y Y N END BEGIN END BEGIN N Y N END END");
+        Map<String, Integer> result3 = nestedStatus("BEGIN BEGIN Y Y N END BEGIN END BEGIN N Y N END END");
         assertEquals(map3, result3);
     }
 

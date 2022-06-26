@@ -96,18 +96,18 @@ import java.util.*;
 
 public class FiveMinIntervals {
     class Time {
-        @Override
-        public boolean equals(Object o) {
-            if (this == o) return true;
-            if (o == null || getClass() != o.getClass()) return false;
-            Time time = (Time) o;
-            return day == time.day && hour == time.hour && min == time.min && dayTime == time.dayTime;
-        }
-
-        @Override
-        public int hashCode() {
-            return Objects.hash(day, hour, min, dayTime);
-        }
+//        @Override
+//        public boolean equals(Object o) {
+//            if (this == o) return true;
+//            if (o == null || getClass() != o.getClass()) return false;
+//            Time time = (Time) o;
+//            return day == time.day && hour == time.hour && min == time.min && dayTime == time.dayTime;
+//        }
+//
+//        @Override
+//        public int hashCode() {
+//            return Objects.hash(day, hour, min, dayTime);
+//        }
 
         int day;
         int hour;
@@ -188,7 +188,6 @@ public class FiveMinIntervals {
     public static void main(String[] args) {
         FiveMinIntervals startEndTimeInterval = new FiveMinIntervals();
         List<Integer> data = startEndTimeInterval.getIntervals("mon 11:50 am", "mon 1:00 pm", "12 HOUR");
-        System.out.println(data.size());
         System.out.println(data);
 
 //        List<Integer> data2 = startEndTimeInterval.getIntervals("mon 10:00 pm", "tue 11:00 pm", "24 HOUR");

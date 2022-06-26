@@ -3,6 +3,15 @@ package com.interview.doordash.oa;
 import java.util.*;
 
 /**
+ * Time Complexity:
+ * create ~ It takes O(T)O(T) to add a path to the trie if it contains TT components.
+ * get ~ It takes O(T)O(T) to find a path in the trie if it contains TT components.
+ * Space Complexity:
+ * create ~ Lets look at the worst case space complexity. In the worst case, none of the paths will have any common prefixes. We are not considering the ancestors of a larger path here. In such a case, each unique path will end up taking a different branch in the trie. Also, for a path containing TT components, there will be TT nodes in the trie.
+ * get ~ O(1)O(1).
+ */
+
+/**
  * API spec:
  * get(path): String -> returns the value of the node at the given path
  * create(path, value) -> creates a new node and sets it to the given value. Should error out if the node already exists or if the node’s parent does not exist. That is /Sweetgreen/naan_roll cannot be created if /Sweetgreen has not already been created
