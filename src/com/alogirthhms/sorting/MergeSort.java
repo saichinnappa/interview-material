@@ -10,7 +10,7 @@ import java.util.Arrays;
 public class MergeSort {
 
     public static void main(String[] args) {
-        int[] unsortedArray = {4, 3, 5, 1, 6};
+        int[] unsortedArray = {5,4,3,2,1};
         mergeSort(unsortedArray);
         System.out.println(Arrays.toString(unsortedArray));
     }
@@ -29,10 +29,14 @@ public class MergeSort {
         if (rightArray.length >= 0) System.arraycopy(unsortedArray, mid, rightArray, 0, rightArray.length);
         mergeSort(leftArray);
         mergeSort(rightArray);
+        System.out.println(Arrays.toString(leftArray));
+        System.out.println(Arrays.toString(rightArray));
         merge(unsortedArray, leftArray, rightArray);
+        System.out.println(Arrays.toString(unsortedArray));
     }
 
     private static void merge(int[] unsortedArray, int[] leftArray, int[] rightArray) {
+        System.out.println("--here--");
         int i = 0, j = 0, k = 0;
         while (i < leftArray.length && j < rightArray.length) { //keep iterating until one of the condition fails and populate into unsorted array
             if (leftArray[i] <= rightArray[j]) {

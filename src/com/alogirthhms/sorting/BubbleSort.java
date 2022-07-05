@@ -13,22 +13,21 @@ import java.util.Arrays;
 public class BubbleSort {
 
     public static void main(String[] args) {
-        int[] unsortedArray = {5, 4, 3, 2, 1};
+        int[] unsortedArray = {1,4,3,6,8};
         int[] sortedArray = sortArray(unsortedArray);
         System.out.println(Arrays.toString(sortedArray));
     }
 
     private static int[] sortArray(int[] unsortedArray) {
         boolean sorted = false;
-
-        while (!sorted) {
+        while(!sorted){
             sorted = true;
-            for (int i = 0; i < unsortedArray.length - 1; i++) {
-                if (unsortedArray[i] > unsortedArray[i + 1]) {
-                    int temp = unsortedArray[i + 1];
-                    unsortedArray[i + 1] = unsortedArray[i];
-                    unsortedArray[i] = temp;
+            for(int i = 0; i < unsortedArray.length - 1; i++){
+                if(unsortedArray[i] > unsortedArray[i + 1]){
                     sorted = false;
+                    int temp = unsortedArray[i];
+                    unsortedArray[i] = unsortedArray[i + 1];
+                    unsortedArray[i + 1] = temp;
                 }
             }
         }

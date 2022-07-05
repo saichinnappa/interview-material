@@ -19,27 +19,24 @@ public class QuickSort {
     }
 
     private static void quickSort(int[] unsortedArray, int start, int end) {
-
-        if (start < end) {
-            int pivotIndex = partitionArray(unsortedArray, start, end);
-            System.out.println("PI -> " + pivotIndex);
-            quickSort(unsortedArray, 0, pivotIndex - 1);
-            quickSort(unsortedArray, pivotIndex + 1, end);
+        if(start < end){
+            int partitionIndex = partitionArray(unsortedArray, start, end);
+            quickSort(unsortedArray, start, partitionIndex - 1);
+            quickSort(unsortedArray, partitionIndex + 1, end);
         }
     }
 
     private static int partitionArray(int[] unsortedArray, int start, int end) {
+        int partitionIndex = start - 1;
         int pivotElement = unsortedArray[end];
-        int i = start - 1;
-        for (int j = start; j <= end; j++) {
-            System.out.println(Arrays.toString(unsortedArray));
-            if (unsortedArray[j] <= pivotElement) {
-                ++i;
-                int temp = unsortedArray[i];
-                unsortedArray[i] = unsortedArray[j];
-                unsortedArray[j] = temp;
+        for(int i = start; i <= end ; i++){
+            if(unsortedArray[i] <= pivotElement){
+                partitionIndex++;
+                int temp = unsortedArray[partitionIndex];
+                unsortedArray[partitionIndex] = unsortedArray[i];
+                unsortedArray[i] = temp;
             }
         }
-        return i;
+        return partitionIndex;
     }
 }

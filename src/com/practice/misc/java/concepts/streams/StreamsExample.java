@@ -8,6 +8,7 @@ import java.util.function.IntPredicate;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 public class StreamsExample {
     public static void main(String[] args) {
@@ -20,45 +21,81 @@ public class StreamsExample {
         List<Person> personList = Arrays.asList(p2, p1);
 
         System.out.println("********************* STEAMS EXAMPLES ***********************\n");
+        /**
+         * 1. MAP (Convert one data type to another data type result
+         * 2. FLAT MAP (Convert nested object to flat map)
+         * 3. FILTER (Check a condition on the object)
+         * 4. COLLECT (Result collector type ex: list, map)
+         */
 
         System.out.println("------------------FETCH PERSON WITH 2 IN ADDRESS LANE TWO---------------------");
         //All persons whose address line two contains "2"
-        List<Person> addresses = personList.stream().filter(p -> p.address.lineTwo.contains("2")).collect(Collectors.toList());
-        System.out.println(addresses);
-
-        System.out.println("\n------------------FETCH ALL COLORS ACROSS ALL PERSONS---------------------");
+        List<Person> result1 = personList.stream().filter(p -> p.address.lineTwo.contains("2")).collect(Collectors.toList());
+        System.out.println(result1);
 
         // Collect all colors across all persons
-        List<String> colorList = personList.stream().flatMap(p -> p.colors.stream()).collect(Collectors.toList());
-        System.out.println(colorList);
+        System.out.println("\n------------------FETCH ALL COLORS ACROSS ALL PERSONS---------------------");
+        List<String> result2 = personList.stream().flatMap( p -> p.colors.stream()).collect(Collectors.toList());
+        System.out.println(result2);
 
         System.out.println("\n------------------FETCH PERSONS WITH ONLY GREEN COLOR---------------------");
         //List of persons with color green
-        Predicate<Person> pp = p -> p.colors.contains("green");
-        List<Person> result1 = personList.stream().filter(pp).collect(Collectors.toList());
-        System.out.println(result1);
+        Predicate<Person> predicate = p -> p.colors.contains("green");
+        List<Person> result3 = personList.stream().filter(predicate).collect(Collectors.toList());
+        System.out.println(result3);
 
         System.out.println("\n------------------FETCH ALL PERSON IDs---------------------");
         //Fetch all id's from the persons list
-        List<Integer> pIds = personList.stream().map( p -> p.id).collect(Collectors.toList());
-        System.out.println(pIds);
+        Function<Person, String> func = (p) -> p.name;
+        List<String> result4 = personList.stream().map(func).collect(Collectors.toList());
+        System.out.println(result4);
 
         System.out.println("\n------------------FETCH A MAP OF PERSON ID AND PERSON NAME---------------------");
         //Collecting to a map
-        Map<Integer, String> result2 = personList.stream().collect(Collectors.toMap(Person::getId, Person::getName));
-        System.out.println(result2);
+        Map<Integer, String> result5 = personList.stream().collect(Collectors.toMap(Person::getId, Person::getName));
+        System.out.println(result5);
+
 
         System.out.println("\n------------------FETCH A MAP OF PERSON ID AND PERSON OBJECT---------------------");
         //Collecting to a map (id as key and person as value)
-        Map<Integer, Person> result3 = personList.stream().collect(Collectors.toMap(Person::getId, Function.identity()));
-        System.out.println(result3);
+        Map<Integer, Person> result6 = personList.stream().collect(Collectors.toMap(Person::getId, Function.identity()));
+        System.out.println(result6);
+
+        System.out.println("\n------------------FETCH MAP OF COLOR SIZES FOR EACH PERSON---------------------");
+        //Colors size for each person
+        Function<Person, Long> func1 = p -> (long)p.colors.size();
+        Map<Integer, Long> result7 = personList.stream().collect(Collectors.toMap(Person::getId, func1));
+        System.out.println(result7);
 
 
-        IntStream stream = IntStream.range(1, 100);
-        List<Integer> primes = stream.filter(StreamsExample::isPrime)
-                .boxed()
-                .collect(Collectors.toList());
-        System.out.println(primes);
+        System.out.println("********************* REDUCE EXAMPLES ***********************\n");
+        /**
+         *  3 components for REDUCE
+         *  1. Identity (default value)
+         *  2. Accumulator ( a function performs action on the input stream)
+         *  3. Combiner ( works only on parallel stream, aggregates the result of the accumulator)
+         */
+        System.out.println("------------------REDUCE LIST OF NUMBERS---------------------");
+        int result8 = Stream.of(1, 2, 3).reduce(10, Integer::sum);
+        System.out.println(result8);
+
+        System.out.println("------------------REDUCE LIST OF NUMBERS WITH COMBINER [PARALLEL STREAM]---------------------");
+        int result9 = Stream.of(1, 2, 3).parallel().reduce(10, Integer::sum, Integer::sum);
+        System.out.println(result9);
+
+        System.out.println("********************* COLLECTOR EXAMPLES ***********************\n");
+        System.out.println("-------------------BUILD STRING COLLECTING ALL NAMES-------------------");
+        String result10 = personList.stream().map(Person::getName).collect(Collectors.joining(",", "[", "]"));
+        System.out.println(result10);
+
+        List<Integer> result11 = personList.parallelStream().map(p -> p.id * 10).collect(Collectors.toList());
+        System.out.println(result11);
+
+//        IntStream stream = IntStream.range(1, 100);
+//        List<Integer> primes = stream.filter(StreamsExample::isPrime)
+//                .boxed()
+//                .collect(Collectors.toList());
+//        System.out.println(primes);
 
 
     }
