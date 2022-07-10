@@ -1,9 +1,10 @@
-package com.pluralsight.streamslambdas.exercises;
+package com.practice.java.features.pluralsight.streams.exercise.test;
 
+import com.practice.java.features.pluralsight.streams.exercise.BasicStreamsExercise01;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static com.pluralsight.streamslambdas.exercises.TestData.*;
+import static com.practice.java.features.pluralsight.streams.exercise.test.TestData.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class BasicStreamsExercise01Test {

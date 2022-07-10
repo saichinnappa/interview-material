@@ -1,9 +1,10 @@
-package com.pluralsight.streamslambdas.exercises;
+package com.practice.java.features.pluralsight.functionalinterfaces.exercises.test;
 
+import com.practice.java.features.pluralsight.functionalinterfaces.exercises.FunctionalInterfacesExercise03;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static com.pluralsight.streamslambdas.exercises.FunctionalInterfacesExercise03.ArithmeticOperation.*;
+import static com.practice.java.features.pluralsight.functionalinterfaces.exercises.FunctionalInterfacesExercise03.ArithmeticOperation.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class FunctionalInterfacesExercise03Test {

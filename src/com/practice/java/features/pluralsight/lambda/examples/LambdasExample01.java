@@ -3,11 +3,11 @@
  *
  * Copyright (C) 2021 by Jesper de Jong (jesper@jdj-it.com).
  */
-package com.practice.java.features.streams.pluralsight.lambda.examples;
+package com.practice.java.features.pluralsight.lambda.examples;
 
 
-import com.practice.java.features.streams.pluralsight.lambda.ExampleData;
-import com.practice.java.features.streams.pluralsight.lambda.Product;
+import com.practice.java.features.pluralsight.ExampleData;
+import com.practice.java.features.pluralsight.Product;
 
 import java.util.Comparator;
 import java.util.List;

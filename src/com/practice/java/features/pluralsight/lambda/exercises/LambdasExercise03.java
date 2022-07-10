@@ -3,10 +3,10 @@
  *
  * Copyright (C) 2021 by Jesper de Jong (jesper@jdj-it.com).
  */
-package com.practice.java.features.streams.pluralsight.lambda.exercises;
+package com.practice.java.features.pluralsight.lambda.exercises;
 
 
-import com.practice.java.features.streams.pluralsight.lambda.Product;
+import com.practice.java.features.pluralsight.Product;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;

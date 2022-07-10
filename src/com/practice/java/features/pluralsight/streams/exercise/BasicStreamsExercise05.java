@@ -1,6 +1,8 @@
-package com.pluralsight.streamslambdas.exercises;
+package com.practice.java.features.pluralsight.streams.exercise;
 
-import com.pluralsight.streamslambdas.Product;
+import com.practice.java.features.pluralsight.Category;
+import com.practice.java.features.pluralsight.ExampleData;
+import com.practice.java.features.pluralsight.Product;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -20,9 +22,12 @@ public class BasicStreamsExercise05 {
         //
         // Hint: Use two stream operations; one the find the appropriate products,
         // and another one to check if they all cost less than the price limit.
+        return products.stream()
+                .filter(p -> p.getCategory() == Category.OFFICE)
+                .allMatch( p -> p.getPrice().compareTo(priceLimit) <= 0);
 
 //        return products.stream()...;
 
-        throw new UnsupportedOperationException("Not yet implemented"); // Remove this line
+//        throw new UnsupportedOperationException("Not yet implemented"); // Remove this line
     }
 }

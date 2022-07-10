@@ -1,6 +1,9 @@
-package com.pluralsight.streamslambdas.exercises;
+package com.practice.java.features.pluralsight.streams.exercise.test;
 
-import com.pluralsight.streamslambdas.Product;
+import com.practice.java.features.pluralsight.Product;
+import static com.practice.java.features.pluralsight.Category.*;
+
+import com.practice.java.features.pluralsight.streams.exercise.BasicStreamsExercise03;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

@@ -3,10 +3,10 @@
  *
  * Copyright (C) 2021 by Jesper de Jong (jesper@jdj-it.com).
  */
-package com.practice.java.features.streams.pluralsight.lambda.exercises.test;
+package com.practice.java.features.pluralsight.lambda.exercises.test;
 
-import com.practice.java.features.streams.pluralsight.lambda.Product;
-import com.practice.java.features.streams.pluralsight.lambda.exercises.LambdasExercise03;
+import com.practice.java.features.pluralsight.Product;
+import com.practice.java.features.pluralsight.lambda.exercises.LambdasExercise03;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -14,7 +14,7 @@ import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.List;
 
-import static com.practice.java.features.streams.pluralsight.lambda.Category.*;
+import static com.practice.java.features.pluralsight.Category.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.IsInstanceOf.instanceOf;
 import static org.junit.jupiter.api.Assertions.assertEquals;

@@ -1,7 +1,7 @@
-package com.practice.java.features.streams.pluralsight.lambda.exercises;
+package com.practice.java.features.pluralsight.lambda.exercises;
 
 
-import com.practice.java.features.streams.pluralsight.lambda.Product;
+import com.practice.java.features.pluralsight.Product;
 
 import java.util.Comparator;
 import java.util.List;

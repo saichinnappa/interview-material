@@ -1,10 +1,11 @@
-package com.pluralsight.streamslambdas.exercises;
+package com.practice.java.features.pluralsight.streams.exercise;
 
-import com.pluralsight.streamslambdas.Category;
-import com.pluralsight.streamslambdas.Product;
+import com.practice.java.features.pluralsight.Category;
+import com.practice.java.features.pluralsight.Product;
 
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class BasicStreamsExercise02 {
@@ -25,9 +26,10 @@ public class BasicStreamsExercise02 {
         //
         // Hint: Use the API documentation of interface java.util.stream.Stream.
 
-//        return products.stream()...;
-
-        throw new UnsupportedOperationException("Not yet implemented"); // Remove this line
+       return products.stream()
+                .filter(p -> p.getCategory() == category)
+                .map(Product::getName)
+                .collect(Collectors.toList());
     }
 
     /**
@@ -46,8 +48,10 @@ public class BasicStreamsExercise02 {
         //
         // Hint: You'll need to use different mapping methods.
 
-//        return categories...;
+        return categories.map(productsByCategory::get).
+                flatMap(p-> p.stream().map(Product::getName)).collect(Collectors.toList());
 
-        throw new UnsupportedOperationException("Not yet implemented"); // Remove this line
+
+
     }
 }

@@ -1,4 +1,4 @@
-package com.pluralsight.streamslambdas.exercises;
+package com.practice.java.features.pluralsight.functionalinterfaces.exercises;
 
 import java.util.function.DoubleBinaryOperator;
 
@@ -32,9 +32,10 @@ public class FunctionalInterfacesExercise03 {
     public double calculate(double a, double b, ArithmeticOperation operation) {
         // TODO: Implement this method; apply the appropriate operation on the values a and b.
         // Note: This is a one-liner. You don't need a switch statement, for example.
-
+        DoubleBinaryOperator doubleBinaryOperator = operation.getOperator();
+        return  doubleBinaryOperator.applyAsDouble(a, b);
 //        return ...;
 
-        throw new UnsupportedOperationException("Not yet implemented"); // Remove this line
+//        throw new UnsupportedOperationException("Not yet implemented"); // Remove this line
     }
 }

@@ -3,12 +3,14 @@
  *
  * Copyright (C) 2021 by Jesper de Jong (jesper@jdj-it.com).
  */
-package com.pluralsight.streamslambdas.exercises;
+package com.practice.java.features.pluralsight.functionalinterfaces.exercises;
 
-import com.pluralsight.streamslambdas.Product;
+
+import com.practice.java.features.pluralsight.Product;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Predicate;
 
 public class FunctionalInterfacesExercise01 {
 
@@ -24,12 +26,18 @@ public class FunctionalInterfacesExercise01 {
      * @param f        Determines which products should be in the result.
      * @return A filtered list of products.
      */
-    public List<Product> filterProducts(List<Product> products, /* TODO: Replace 'Object' with a functional interface */ Object f) {
+    public List<Product> filterProducts(List<Product> products, /* TODO: Replace 'Object' with a functional interface */ Predicate<Product> f) {
         List<Product> result = new ArrayList<>();
+
+        products.stream().peek(System.out::println);
 
         // TODO: Implement this method. Loop through the list of products, call 'f' to determine if a product should be
         // in the result list, and put it in the result list if appropriate.
-
+        for(Product p : products){
+            if(f.test(p)){
+                result.add(p);
+            }
+        }
         return result;
     }
 }

@@ -1,6 +1,7 @@
-package com.pluralsight.streamslambdas.exercises;
+package com.practice.java.features.pluralsight.streams.exercise;
 
-import com.pluralsight.streamslambdas.Product;
+import com.practice.java.features.pluralsight.ExampleData;
+import com.practice.java.features.pluralsight.Product;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -21,8 +22,9 @@ public class BasicStreamsExercise03 {
         //
         // Hint: You'll need to add two stream operations.
 
-//        return products.stream()...;
-
-        throw new UnsupportedOperationException("Not yet implemented"); // Remove this line
+        return products
+                .stream()
+                .filter(p -> p.getPrice().compareTo(priceLimit) <= 0)
+                .findFirst();
     }
 }

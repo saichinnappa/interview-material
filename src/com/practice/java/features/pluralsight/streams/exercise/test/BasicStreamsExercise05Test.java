@@ -1,6 +1,8 @@
-package com.pluralsight.streamslambdas.exercises;
+package com.practice.java.features.pluralsight.streams.exercise.test;
+import com.practice.java.features.pluralsight.Product;
+import static com.practice.java.features.pluralsight.Category.*;
 
-import com.pluralsight.streamslambdas.Product;
+import com.practice.java.features.pluralsight.streams.exercise.BasicStreamsExercise05;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -8,7 +10,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.pluralsight.streamslambdas.exercises.TestData.*;
+import static com.practice.java.features.pluralsight.streams.exercise.test.TestData.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class BasicStreamsExercise05Test {

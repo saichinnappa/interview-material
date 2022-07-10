@@ -1,13 +1,12 @@
-package com.pluralsight.streamslambdas.exercises;
+package com.practice.java.features.pluralsight.functionalinterfaces.exercises.test;
 
-import com.pluralsight.streamslambdas.Product;
+import com.practice.java.features.pluralsight.Product;
+import com.practice.java.features.pluralsight.functionalinterfaces.exercises.FunctionalInterfacesExercise01;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
 import java.util.function.Predicate;
-
-import static com.pluralsight.streamslambdas.Category.FOOD;
-import static com.pluralsight.streamslambdas.exercises.TestData.*;
+import static com.practice.java.features.pluralsight.Category.FOOD;
+import static com.practice.java.features.pluralsight.functionalinterfaces.exercises.test.TestData.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class FunctionalInterfacesExercise01Test {

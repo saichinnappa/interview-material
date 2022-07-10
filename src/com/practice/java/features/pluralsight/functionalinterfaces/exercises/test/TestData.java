@@ -1,12 +1,15 @@
-package com.pluralsight.streamslambdas.exercises;
+package com.practice.java.features.pluralsight.functionalinterfaces.exercises.test;
 
-import com.pluralsight.streamslambdas.Product;
+
+
+import com.practice.java.features.pluralsight.Product;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.pluralsight.streamslambdas.Category.*;
+import static com.practice.java.features.pluralsight.Category.*;
+
 
 public class TestData {
 

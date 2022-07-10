@@ -1,6 +1,7 @@
-package com.pluralsight.streamslambdas.exercises;
+package com.practice.java.features.pluralsight.functionalinterfaces.exercises.test;
 
-import com.pluralsight.streamslambdas.Product;
+import com.practice.java.features.pluralsight.Product;
+import com.practice.java.features.pluralsight.functionalinterfaces.exercises.FunctionalInterfacesExercise02;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -8,10 +9,10 @@ import java.math.BigDecimal;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
-import static com.pluralsight.streamslambdas.Category.FOOD;
-import static com.pluralsight.streamslambdas.Category.OFFICE;
-import static com.pluralsight.streamslambdas.exercises.TestData.*;
+import static com.practice.java.features.pluralsight.Category.*;
+import static com.practice.java.features.pluralsight.functionalinterfaces.exercises.test.TestData.*;
 import static org.assertj.core.api.Assertions.assertThat;
+
 
 class FunctionalInterfacesExercise02Test {
 

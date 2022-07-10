@@ -1,8 +1,11 @@
-package com.pluralsight.streamslambdas.exercises;
+package com.practice.java.features.pluralsight.streams.exercise;
 
-import com.pluralsight.streamslambdas.Product;
+import com.practice.java.features.pluralsight.Category;
+import com.practice.java.features.pluralsight.ExampleData;
+import com.practice.java.features.pluralsight.Product;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class BasicStreamsExercise01 {
 
@@ -21,8 +24,9 @@ public class BasicStreamsExercise01 {
         //
         // Hint: Use the API documentation of interface java.util.stream.Stream.
 
-//        return products.stream()...;
-
-        throw new UnsupportedOperationException("Not yet implemented"); // Remove this line
+        return products.stream()
+                .filter(p -> p.getCategory() == Category.UTENSILS)
+                .sorted((p1, p2) -> p1.getName().compareTo(p2.getName()) )
+                .collect(Collectors.toList());
     }
 }
