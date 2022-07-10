@@ -3,7 +3,7 @@
  *
  * Copyright (C) 2021 by Jesper de Jong (jesper@jdj-it.com).
  */
-package com.practice.java.features.streams.pluralsight.lambda;
+package com.practice.java.features.pluralsight.lambda;
 
 public enum Category {
     FOOD,
