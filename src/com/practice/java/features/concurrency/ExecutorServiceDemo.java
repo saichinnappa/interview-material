@@ -4,13 +4,13 @@ import java.time.Instant;
 import java.util.concurrent.*;
 
 public class ExecutorServiceDemo {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         // Executor Service with Fixed Thread pool
         executorServiceFixedThreadPool();
 
         // executor service with scheduled delay
         executorServiceWithScheduledDelay();
-        
+
         // executor service with future task
         executorServiceWithFutureTask();
 
@@ -19,6 +19,12 @@ public class ExecutorServiceDemo {
 
         // Count down latch
         countdownlatch();
+
+        // Semaphore
+        semaphore();
+
+        // Thread joining
+        joinThreads();
 
 
 
@@ -131,6 +137,57 @@ public class ExecutorServiceDemo {
         System.out.println("Finished processing: "+ Thread.currentThread().getName());
     }
 
+
+    private static void semaphore() {
+        System.out.println("\n############# SEMAPHORE ###############");
+        Semaphore semaphore = new Semaphore(1);
+        SemaphoreExample threadOne = new SemaphoreExample(semaphore, "Thread - 1");
+        SemaphoreExample threadTwo = new SemaphoreExample(semaphore, "Thread - 2");
+
+        threadOne.start();
+        threadTwo.start();
+
+        try {
+            threadOne.join();
+            threadTwo.join();
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
+    private static void joinThreads(){
+        Runnable runnable = new Runnable(){
+            @Override
+            public void run() {
+                try {
+                    if(Thread.currentThread().getName().equals("Thread-0")){
+                        System.out.println(Thread.currentThread().getName());
+                        Thread.sleep(1000);
+                    } else {
+                        System.out.println(Thread.currentThread().getName());
+                        Thread.sleep(2000);
+                    }
+
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        };
+        Thread testThread = new Thread(runnable);
+        Thread testThread1 = new Thread(runnable);
+        testThread.start();
+        testThread1.start();
+        try {
+            testThread.join();
+            testThread1.join(); //Waits for Thread - 0 to complete
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        System.out.println("--finish---"); //Waits for Thread -0 && Thread-1 to complete before finishing main thread.
+    }
+
+
 }
 class RunnableTask implements Runnable{
     @Override
@@ -169,4 +226,40 @@ class Worker implements Runnable{
             throw new RuntimeException(e);
         }
     }
+}
+
+class Shared
+{
+    static int count = 0;
+}
+
+
+class SemaphoreExample extends Thread{
+    Semaphore semaphore;
+    String name;
+
+    SemaphoreExample(Semaphore semaphore, String name){
+        this.semaphore = semaphore;
+        this.name = name;
+    }
+
+    @Override
+    public void run(){
+        try {
+            System.out.println("Processing Thread: "+ name);
+            System.out.println("Available permits: "+ semaphore.availablePermits());
+            semaphore.acquire();
+            for(int i=0; i < 5; i++)
+            {
+                Shared.count--;
+                System.out.println(name + ": " + Shared.count);
+                Thread.sleep(100);
+            }
+            System.out.println("Lock released by: "+name);
+            semaphore.release();
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 }
