@@ -21,7 +21,7 @@ public class BasicStreamsExercise06 {
 
 //        return products.stream()...;
         return products.stream()
-                .map(Product::toString)
+                .map(p -> p.toString())
                 .collect(Collectors.joining("\n"));
 
 //        throw new UnsupportedOperationException("Not yet implemented"); // Remove this line

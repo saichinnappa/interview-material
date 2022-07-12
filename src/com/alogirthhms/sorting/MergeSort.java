@@ -33,10 +33,10 @@ public class MergeSort {
         System.out.println(Arrays.toString(rightArray));
         merge(unsortedArray, leftArray, rightArray);
         System.out.println(Arrays.toString(unsortedArray));
+        System.out.println("--here--");
     }
 
     private static void merge(int[] unsortedArray, int[] leftArray, int[] rightArray) {
-        System.out.println("--here--");
         int i = 0, j = 0, k = 0;
         while (i < leftArray.length && j < rightArray.length) { //keep iterating until one of the condition fails and populate into unsorted array
             if (leftArray[i] <= rightArray[j]) {

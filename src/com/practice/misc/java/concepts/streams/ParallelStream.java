@@ -26,7 +26,7 @@ class ParallelStream {
 
         long t1, t2;
         List<Employee> eList = new ArrayList<>();
-        for (int i = 0; i < 10000000; i++) {
+        for (int i = 0; i < 20000000; i++) {
             eList.add(new Employee("A", 20000));
             eList.add(new Employee("B", 3000));
             eList.add(new Employee("C", 15002));

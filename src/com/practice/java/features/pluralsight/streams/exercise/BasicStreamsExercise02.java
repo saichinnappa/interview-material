@@ -26,9 +26,9 @@ public class BasicStreamsExercise02 {
         //
         // Hint: Use the API documentation of interface java.util.stream.Stream.
 
-       return products.stream()
+        return products.stream()
                 .filter(p -> p.getCategory() == category)
-                .map(Product::getName)
+                .map(p -> p.getName())
                 .collect(Collectors.toList());
     }
 
@@ -47,9 +47,14 @@ public class BasicStreamsExercise02 {
         // Finally, collect the results in a list.
         //
         // Hint: You'll need to use different mapping methods.
+        return categories.map( c ->  productsByCategory.get(c))
+                .flatMap( p -> p.stream())
+                .map(p -> p.getName())
+                .collect(Collectors.toList());
 
-        return categories.map(productsByCategory::get).
-                flatMap(p-> p.stream().map(Product::getName)).collect(Collectors.toList());
+
+//        return categories.map(productsByCategory::get).
+//                flatMap(p-> p.stream().map(Product::getName)).collect(Collectors.toList());
 
 
 

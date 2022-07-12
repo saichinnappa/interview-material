@@ -1,47 +1,59 @@
 package com.practice.misc.java.concepts;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class ComparatorDemo {
 
     public static void main(String[] args) {
+
         Football player1 = new Football("a", 1);
         Football player2 = new Football("c", 2);
         Football player3 = new Football("b", 3);
-        List<Football> list = new ArrayList<>();
-        list.add(player1);
-        list.add(player2);
-        list.add(player3);
-        list.sort(new PlayerComparator());
+        Football player4 = new Football("a", 4);
+        List<Football> footballList = Arrays.asList(player1, player2, player3, player4);
 
-        Comparator<Football> byName = Comparator.comparing(Football::getName);
-        list.sort(byName);
+        System.out.println("## RANKS ##");
+        int[] footballs = footballList.stream()
+                .mapToInt(f -> f.getRank())
+                .toArray();
+        for(int football : footballs){
+            System.out.println(football);
+        }
 
-        Comparator<Football> byRank = Comparator.comparing(Football::getRank);
-        list.sort(byRank);
+        System.out.println("## NAMES ##");
+        List<String> list = Arrays.asList("a", "b", "c");
+        String[] sArr = list.stream().toArray(String[]::new);
+        for(String s : sArr){
+            System.out.println(s);
+        }
 
-        Comparator<Football> footballComparator = Comparator.comparingInt(Football::getRank);
 
-        list.sort(footballComparator);
+        // sort by name
+        footballList.sort(Comparator.comparing(Football::getName));
+        System.out.println(footballList);
 
-        System.out.println(list);
+        //sort by rank
+        footballList.sort(Comparator.comparing(Football::getRank));
+        System.out.println(footballList);
+
+        // sort by rank if name is same
+        footballList.sort(new PlayerComparator());
+        System.out.println(footballList);
+
     }
 
 }
 
-class PlayerComparator implements Comparator<Football> {
-
+class PlayerComparator implements Comparator<Football>{
     @Override
-    public int compare(Football o1, Football o2) {
-        if (o1.rank > o2.rank)
-            return 1;
-        else if (o1.rank < o2.rank)
-            return -1;
-        return 0;
+    public int compare(Football o1, Football o2){
+        if(o1.name.equals(o2.name))
+            return Integer.compare(o2.rank, o1.rank);
+        return o1.name.compareTo(o2.name);
     }
 }
+
 
 class Football {
     String name;

@@ -4,6 +4,7 @@ import com.practice.java.features.pluralsight.Category;
 import com.practice.java.features.pluralsight.ExampleData;
 import com.practice.java.features.pluralsight.Product;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -23,10 +24,13 @@ public class BasicStreamsExercise01 {
         // 3) Collect the result into a List
         //
         // Hint: Use the API documentation of interface java.util.stream.Stream.
-
+//        products.stream()
+//                .filter( p -> p.getCategory().equals("Utensils"))
+//                .sort(Comparator.comparing(Product::getName))
+//                .collect(Collectors.toList());
         return products.stream()
                 .filter(p -> p.getCategory() == Category.UTENSILS)
-                .sorted((p1, p2) -> p1.getName().compareTo(p2.getName()) )
+                .sorted(Comparator.comparing(Product::getName))
                 .collect(Collectors.toList());
     }
 }

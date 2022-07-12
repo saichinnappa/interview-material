@@ -30,42 +30,42 @@ public class StreamsExample {
 
         System.out.println("------------------FETCH PERSON WITH 2 IN ADDRESS LANE TWO---------------------");
         //All persons whose address line two contains "2"
-        List<Person> result1 = personList.stream().filter(p -> p.address.lineTwo.contains("2")).collect(Collectors.toList());
-        System.out.println(result1);
+        List<Person> result = personList.stream().filter(p -> p.address.lineTwo.contains("2")).collect(Collectors.toList());
+        System.out.println(result);
 
         // Collect all colors across all persons
         System.out.println("\n------------------FETCH ALL COLORS ACROSS ALL PERSONS---------------------");
-        List<String> result2 = personList.stream().flatMap( p -> p.colors.stream()).collect(Collectors.toList());
-        System.out.println(result2);
+        List<String> result1 = personList.stream().flatMap(p -> p.colors.stream()).collect(Collectors.toList());
+        System.out.println(result1);
 
         System.out.println("\n------------------FETCH PERSONS WITH ONLY GREEN COLOR---------------------");
         //List of persons with color green
-        Predicate<Person> predicate = p -> p.colors.contains("green");
-        List<Person> result3 = personList.stream().filter(predicate).collect(Collectors.toList());
-        System.out.println(result3);
+        Predicate<Person> colorPredicate = p -> p.colors.contains("green");
+        List<Person> result2 = personList.stream().filter(colorPredicate).collect(Collectors.toList());
+        System.out.println(result2);
 
         System.out.println("\n------------------FETCH ALL PERSON IDs---------------------");
         //Fetch all id's from the persons list
-        Function<Person, String> func = (p) -> p.name;
-        List<String> result4 = personList.stream().map(func).collect(Collectors.toList());
-        System.out.println(result4);
+        Function<Person, Integer> personFunction = p -> p.id;
+        List<Integer> result3 = personList.stream().map(personFunction).collect(Collectors.toList());
+        System.out.println(result3);
 
         System.out.println("\n------------------FETCH A MAP OF PERSON ID AND PERSON NAME---------------------");
         //Collecting to a map
-        Map<Integer, String> result5 = personList.stream().collect(Collectors.toMap(Person::getId, Person::getName));
-        System.out.println(result5);
+        Map<Integer, String> result4 = personList.stream().collect(Collectors.toMap(Person::getId, Person::getName));
+        System.out.println(result4);
 
 
         System.out.println("\n------------------FETCH A MAP OF PERSON ID AND PERSON OBJECT---------------------");
         //Collecting to a map (id as key and person as value)
-        Map<Integer, Person> result6 = personList.stream().collect(Collectors.toMap(Person::getId, Function.identity()));
-        System.out.println(result6);
+        Map<Integer, Person> result5 = personList.stream().collect(Collectors.toMap(Person::getId, Function.identity()));
+        System.out.println(result5);
 
         System.out.println("\n------------------FETCH MAP OF COLOR SIZES FOR EACH PERSON---------------------");
         //Colors size for each person
-        Function<Person, Long> func1 = p -> (long)p.colors.size();
-        Map<Integer, Long> result7 = personList.stream().collect(Collectors.toMap(Person::getId, func1));
-        System.out.println(result7);
+        Function<Person, Integer> colorFunction = p -> p.getColors().size();
+        Map<Integer, Integer> result6 = personList.stream().collect(Collectors.toMap(Person::getId, colorFunction));
+        System.out.println(result6);
 
 
         System.out.println("********************* REDUCE EXAMPLES ***********************\n");
