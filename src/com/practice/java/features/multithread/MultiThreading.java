@@ -42,7 +42,7 @@ public class MultiThreading {
 
 }
 
-class MyRunnable implements Runnable{
+class MyRunnable extends Thread{
 
     @Override
     public void run() {

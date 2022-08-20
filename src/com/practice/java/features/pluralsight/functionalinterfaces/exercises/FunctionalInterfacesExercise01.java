@@ -28,7 +28,7 @@ public class FunctionalInterfacesExercise01 {
      */
     public List<Product> filterProducts(List<Product> products, /* TODO: Replace 'Object' with a functional interface */ Predicate<Product> f) {
         List<Product> result = new ArrayList<>();
-        Predicate<Product> testPredicate = p -> p.getPrice().intValue() > 10;
+//        Predicate<Product> testPredicate = p -> p.getPrice().intValue() > 10;
 
 //        products.stream().peek(System.out::println);
 

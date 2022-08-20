@@ -8,8 +8,8 @@ import java.util.Arrays;
  * 2. compare left side of the array with pivot element and swap elements
  * 3. compare right side of the array with pivot element and swap elements
  * <p>
- * Time Complexity: O(nlogn) , worst case O(n^2)
- * Space Complexity: O(n) -since in-place swapping
+ * Time Complexity: WC: O(n^2) | BC: O(nlogn)
+ * Space Complexity: O(nlogn) -since in-place swapping
  */
 public class QuickSort {
     public static void main(String[] args) {

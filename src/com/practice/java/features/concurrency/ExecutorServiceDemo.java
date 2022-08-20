@@ -1,6 +1,8 @@
 package com.practice.java.features.concurrency;
 
 import java.time.Instant;
+import java.util.Deque;
+import java.util.LinkedList;
 import java.util.concurrent.*;
 
 public class ExecutorServiceDemo {
@@ -117,20 +119,28 @@ public class ExecutorServiceDemo {
     private static void countdownlatch(){
         System.out.println("\n############# COUNT DOWN LATCH ###############");
         CountDownLatch countDownLatch = new CountDownLatch(3);
-        Worker w1 = new Worker(countDownLatch, "Worker - 1", 1000);
-        Worker w2 = new Worker(countDownLatch, "Worker - 2", 2000);
-        Worker w3 = new Worker(countDownLatch, "Worker - 3", 3000);
+        ExecutorService executorService
+                 = Executors.newFixedThreadPool(3);
 
-        Thread t1 = new Thread(w1);
-        Thread t2 = new Thread(w2);
-        Thread t3 = new Thread(w3);
-
-        t1.start();
-        t2.start();
-        t3.start();
+        for(int i = 0; i < 3; i++){
+            executorService
+                    .submit(new Worker(countDownLatch, "worker - "+ i, i * 1000));
+        }
+//        Worker w1 = new Worker(countDownLatch, "Worker - 1", 1000);
+//        Worker w2 = new Worker(countDownLatch, "Worker - 2", 2000);
+//        Worker w3 = new Worker(countDownLatch, "Worker - 3", 3000);
+//
+//        Thread t1 = new Thread(w1);
+//        Thread t2 = new Thread(w2);
+//        Thread t3 = new Thread(w3);
+//
+//        t1.start();
+//        t2.start();
+//        t3.start();
 
         try {
             countDownLatch.await();
+            executorService.shutdown();
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
@@ -141,8 +151,10 @@ public class ExecutorServiceDemo {
     private static void semaphore() {
         System.out.println("\n############# SEMAPHORE ###############");
         Semaphore semaphore = new Semaphore(1);
-        SemaphoreExample threadOne = new SemaphoreExample(semaphore, "Thread - 1");
-        SemaphoreExample threadTwo = new SemaphoreExample(semaphore, "Thread - 2");
+        SemaphoreExample s1 = new SemaphoreExample(semaphore, "Thread - 1");
+        SemaphoreExample s2 = new SemaphoreExample(semaphore, "Thread - 2");
+        Thread threadOne = new Thread(s1);
+        Thread threadTwo = new Thread(s2);
 
         threadOne.start();
         threadTwo.start();
@@ -234,7 +246,7 @@ class Shared
 }
 
 
-class SemaphoreExample extends Thread{
+class SemaphoreExample implements Runnable{
     Semaphore semaphore;
     String name;
 

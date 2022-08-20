@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 /**
  * Merge Sort
- * Time Complexity: O(nlogn) - since the array will be repeatedly broken to halves
+ * Time Complexity: WC: O(nlogn) | BC: O(nlogn)
  * Space Complexity: O(n)
  */
 public class MergeSort {

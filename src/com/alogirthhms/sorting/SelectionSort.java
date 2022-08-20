@@ -7,8 +7,8 @@ import java.util.Arrays;
  * 1. Find minimum element in the array and swap with first element
  * 2. Keep repeating step 1 until the entire array is sorted
  * <p>
- * Time Complexity: O(n^2)
- * Space Complexity: O(n)
+ * Time Complexity: WC: O(n^2) | WC: O(n^2)
+ * Space Complexity: O(1)
  */
 public class SelectionSort {
     public static void main(String[] args) {

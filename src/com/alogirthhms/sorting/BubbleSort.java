@@ -8,17 +8,17 @@ import java.util.Arrays;
  * 2. Keep doing step 1 until there is no swap necessary
  * <p>
  * Time Complexity: WC: O(n^2) | BC: O(n)
- * Space Complexity: O(n)
+ * Space Complexity: O(1)
  */
 public class BubbleSort {
 
     public static void main(String[] args) {
         int[] unsortedArray = {1,4,3,6,8};
-        int[] sortedArray = sortArray(unsortedArray);
-        System.out.println(Arrays.toString(sortedArray));
+        sortArray(unsortedArray);
+        System.out.println(Arrays.toString(unsortedArray));
     }
 
-    private static int[] sortArray(int[] unsortedArray) {
+    private static void sortArray(int[] unsortedArray) {
         boolean sorted = false;
         while(!sorted){
             sorted = true;
@@ -31,6 +31,6 @@ public class BubbleSort {
                 }
             }
         }
-        return unsortedArray;
+//        return unsortedArray;
     }
 }
