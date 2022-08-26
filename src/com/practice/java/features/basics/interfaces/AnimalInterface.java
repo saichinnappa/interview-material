@@ -1,4 +1,4 @@
-package com.practice.java.features.basics.oops.abstraction;
+package com.practice.java.features.basics.interfaces;
 
 /**
  * Interface features:

@@ -1,6 +1,6 @@
 package com.practice.java.features.designpatterns.creational.prototype;
 
-public abstract class Item implements Cloneable {
+public class Item implements Cloneable {
 	private String title;
 	private double price;
 	private String url;

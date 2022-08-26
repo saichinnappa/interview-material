@@ -34,13 +34,13 @@ class Money {
         this.currencyCode = currencyCode;
     }
 
-//    @Override
-//    public boolean equals(Object o) {
-//        if (this == o) return true;
-//        if (o == null || getClass() != o.getClass()) return false;
-//        Money money = (Money) o;
-//        return amount == money.amount && currencyCode.equals(money.currencyCode);
-//    }
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Money money = (Money) o;
+        return amount == money.amount && currencyCode.equals(money.currencyCode);
+    }
 
     @Override
     public int hashCode() {

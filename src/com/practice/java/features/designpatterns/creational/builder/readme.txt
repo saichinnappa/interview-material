@@ -1,3 +1,4 @@
+-- Concepts --
 Check if constructing an object is complex(like more arguments)
 Cannot have constructors for every combination. Build object as desired.
 Easy to implement

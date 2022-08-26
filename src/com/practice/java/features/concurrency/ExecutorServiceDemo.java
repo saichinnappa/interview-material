@@ -1,16 +1,23 @@
 package com.practice.java.features.concurrency;
 
 import java.time.Instant;
-import java.util.Deque;
-import java.util.LinkedList;
-import java.util.concurrent.*;
+import java.util.concurrent.Callable;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+import java.util.concurrent.FutureTask;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.Semaphore;
+import java.util.concurrent.TimeUnit;
 
 public class ExecutorServiceDemo {
     public static void main(String[] args) throws InterruptedException {
         // Executor Service with Fixed Thread pool
         executorServiceFixedThreadPool();
 
-        // executor service with scheduled delay
+       // executor service with scheduled delay
         executorServiceWithScheduledDelay();
 
         // executor service with future task
@@ -35,7 +42,8 @@ public class ExecutorServiceDemo {
     private static void executorServiceWithFutureTask() {
         System.out.println("\n############ EXECUTOR SERVICE WITH FUTURE TASK ###############");
         ExecutorService executorService = Executors.newFixedThreadPool(10);
-        Future<String> futureTask =  executorService.submit(() -> {
+        Future<String> futureTask =
+                executorService.submit(() -> {
 //            Thread.sleep(300);
             return "Hello World";
         });
@@ -86,10 +94,10 @@ public class ExecutorServiceDemo {
         executorService.submit(new RunnableTask());
         executorService.submit(new RunnableTask());
         executorService.submit(new RunnableTask());
-        executorService.shutdown();
+        executorService.shutdown(); // triggers shutdown and no new tasks are accepted.
         try {
-            if(!executorService.awaitTermination(1, TimeUnit.SECONDS)){
-                executorService.shutdownNow();
+            if(!executorService.awaitTermination(1, TimeUnit.SECONDS)){// Waits for defined period to complete all tasks or timeout  to occur.
+                executorService.shutdownNow(); // shutdown executor now -> even pending tasks will be killed.
             }
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
@@ -99,12 +107,15 @@ public class ExecutorServiceDemo {
     private static void callableFutureTask() {
         System.out.println("\n############ CALLABLE FUTURE TASK TO RETURN RESULT ###############");
         FutureTask<String> futureTask = new FutureTask<String>(new CallableTask());
+//        ExecutorService e1 = Executors.newSingleThreadExecutor();
+//        e1.submit(futureTask);
         Thread callableThread = new Thread(futureTask);
         callableThread.start();
         while(true){
             if(futureTask.isDone()){
                 try {
                     System.out.println(futureTask.get());
+//                    e1.shutdownNow();
                     return;
                 } catch (InterruptedException | ExecutionException e) {
                     throw new RuntimeException(e);
@@ -116,6 +127,12 @@ public class ExecutorServiceDemo {
 
     }
 
+    /**
+     *
+     * When we create an object of CountDownLatch, we specify the number of threads it should wait for,
+     * all such thread are required to do count down by calling CountDownLatch.countDown()
+     * once they are completed or ready to the job. As soon as count reaches zero, the waiting task starts running.
+     */
     private static void countdownlatch(){
         System.out.println("\n############# COUNT DOWN LATCH ###############");
         CountDownLatch countDownLatch = new CountDownLatch(3);

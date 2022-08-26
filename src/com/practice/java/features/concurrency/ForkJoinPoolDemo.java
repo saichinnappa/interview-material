@@ -15,7 +15,7 @@ public class ForkJoinPoolDemo {
         int result  = forkJoinPool.invoke(customRecursiveTask);
         System.out.println(result);
 
-        CustomRecursiveAction customRecursiveAction = new CustomRecursiveAction("this is a forjoinpool test");
+        CustomRecursiveAction customRecursiveAction = new CustomRecursiveAction("this is a forkjoinpool test");
         forkJoinPool.invoke(customRecursiveAction);
 
 

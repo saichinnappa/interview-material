@@ -11,11 +11,11 @@ public class Singleton {
 //    To make thread safe add volatile
 //    1. volatile variable will always be read from the main memory, not from the local thread cache.
 //    2. volatile variables are always visible to other threads.
-//    3. Volatile keyword is used to modify the value of a variable by different threads.
+//    3. volatile keyword guarantees visibility of changes to variables across threads
     private static volatile Singleton instance = null;
 
 
-//     Mark constructor as private, so no exposed to other classes to create instances
+//     Mark constructor as private, so not exposed to other classes to create instances
     private Singleton(){
 //     To avoid reflection
         if(instance != null)

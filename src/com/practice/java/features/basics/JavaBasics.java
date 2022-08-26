@@ -2,16 +2,17 @@ package com.practice.java.features.basics;
 
 import java.util.Arrays;
 
-public class JavaBasics {
+public final class JavaBasics {
 
    public static void main(String[] args) {
 
-      int result1 = add(2, 3);
+//      int result1 = add(2, 3);
       double result2 = add(2.5, 4.4);
-      System.out.println("int -> "+ result1);
+//      System.out.println("int -> "+ result1);
       System.out.println("double -> "+ result2);
 
    }
+
 
    /**
     * Method Overloading
@@ -19,7 +20,7 @@ public class JavaBasics {
     * 2. Different return type and arguments
     */
 
-   private static int add(int a , int b) {
+   public  int add(int a , int b) {
       return a + b;
    }
 
@@ -27,4 +28,11 @@ public class JavaBasics {
       return a + b;
    }
 
+}
+
+class Test1{
+   public static void main(String[] args) {
+      JavaBasics javaBasics = new JavaBasics();
+      System.out.println(javaBasics.add(3,4));
+   }
 }

@@ -1,4 +1,4 @@
-package com.practice.java.features.basics.oops.abstraction;
+package com.practice.java.features.basics.interfaces;
 
 public class CatInterfaceImplementation implements AnimalInterface{
 
@@ -26,7 +26,5 @@ public class CatInterfaceImplementation implements AnimalInterface{
     public void color() {
         System.out.println("Brown");
     }
-
-
 
 }

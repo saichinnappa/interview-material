@@ -2,10 +2,10 @@ package com.practice.java.features.basics;
 
 public class GenericsMethodDemo {
     // generic method printArray
-    public static < E > void printArray( E[] inputArray ) {
+    public static < G > void printArray( G[] inputArray ) {
         // Display array elements
-        for(E element : inputArray) {
-            System.out.print( element);
+        for(G element : inputArray) {
+            System.out.print(element);
         }
         System.out.println();
     }

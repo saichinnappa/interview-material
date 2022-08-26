@@ -1,4 +1,4 @@
-package com.practice.java.features.basics.oops.abstraction;
+package com.practice.java.features.basics.abstractclass;
 
 public class CatAbstractClass extends AnimalAbstractClass{
 
@@ -27,6 +27,6 @@ public class CatAbstractClass extends AnimalAbstractClass{
 //    public void hello(){
 //        System.out.println("Hello, from sub-class!");
 //    }
-
+//
 
 }

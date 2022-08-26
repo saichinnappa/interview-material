@@ -1,13 +1,13 @@
 package com.practice.java.features.basics;
 
-public class GenericsClassDemo<T> {
-    private T t;
+public class GenericsClassDemo<V> {
+    private V t;
 
-    public void set(T t) {
+    public void set(V t) {
         this.t = t;
     }
 
-    public T get() {
+    public V get() {
         return t;
     }
 
@@ -17,7 +17,6 @@ public class GenericsClassDemo<T> {
 
         integerBox.set(10);
         stringBox.set(new String("Hello World"));
-
         System.out.printf("Integer Value :%d\n\n", integerBox.get());
         System.out.printf("String Value :%s\n", stringBox.get());
     }

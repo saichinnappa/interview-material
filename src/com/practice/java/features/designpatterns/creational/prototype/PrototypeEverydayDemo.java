@@ -16,14 +16,19 @@ public class PrototypeEverydayDemo {
 		Record record = new Record();
 		
 		Statement firstStatement = new Statement(sql, parameters, record);
+		System.out.println(firstStatement);
 		
 		System.out.println(firstStatement.getSql());
 		
 		System.out.println(firstStatement.getParameters());
 		
 		System.out.println(firstStatement.getRecord());
+
+		System.out.println("############");
 		
 		Statement secondStatement = firstStatement.clone();
+
+		System.out.println(secondStatement);
 		
 		System.out.println(secondStatement.getSql());
 		

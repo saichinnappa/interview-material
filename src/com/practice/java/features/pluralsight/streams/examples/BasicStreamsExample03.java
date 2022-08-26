@@ -11,6 +11,7 @@ import com.practice.java.features.pluralsight.Product;
 
 import java.util.List;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 public class BasicStreamsExample03 {
 
@@ -34,5 +35,16 @@ public class BasicStreamsExample03 {
         products.stream()
                 .flatMap(product -> spaces.splitAsStream(product.getName()))
                 .forEach(System.out::println);
+
+
+        //Map example
+        List<String> list = List.of("a", "b", "c", "d");
+        List<String> mapResult = list.stream().map(s -> s).collect(Collectors.toList());
+        System.out.println(mapResult);
+
+        //FlatMap example
+        List<List<String>> list1 = List.of(List.of("a","b"), List.of("c","d"));
+        List<String> flatMapResult = list1.stream().flatMap(l -> l.stream()).collect(Collectors.toList());
+        System.out.println(flatMapResult);
     }
 }

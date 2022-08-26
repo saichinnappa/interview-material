@@ -35,8 +35,8 @@ public class ComparatorDemo {
 //        System.out.println(footballList);
 //
 //        //sort by rank
-//        footballList.sort(Comparator.comparing(Football::getRank));
-//        System.out.println(footballList);
+        footballList.sort(Comparator.comparing(Football::getRank));
+        System.out.println(footballList);
 
         // sort by rank if name is same
         footballList.sort(new PlayerComparator());
